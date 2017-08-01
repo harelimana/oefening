@@ -1,0 +1,12 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+addCateg:
+    path:     /addCategorie
+    defaults: { _controller: AppBundle:Categorie:addCategorie }
+adduser:
+    path:     /addUser
+    defaults: { _controller: AppBundle:User:addUser }
+addEvent:
+    path:     /addevents
+    defaults: { _controller: AppBundle:User:addEvent }

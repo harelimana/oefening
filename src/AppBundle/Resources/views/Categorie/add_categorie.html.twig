@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Categorie:addCategorie{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Categorie:addCategorie page</h1>
+    h2 class="pageheader">Ajout de categorie</h2>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.description) }}
+
+    <button type="submit">Add Categorie !</button>
+    {{form_end(form)}}
+{% endblock %}
