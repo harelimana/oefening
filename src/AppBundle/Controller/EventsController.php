@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\EventsType;
-use AppBundle\Entity\events;
+use AppBundle\Entity\Event;
 use Symfony\Component\HttpFoundation\Request;
 //use Symfony\Component\Form\Extension\HttpFoundation\Request;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +24,7 @@ class EventsController extends Controller
      */
     public function addEventAction(Request $request)
     {
-        $events = new event;
+        $events = new Event;
         $form = $this->createForm(EventsType::class, $events);
         $form->handleRequest($request);
 
@@ -38,7 +38,7 @@ class EventsController extends Controller
             );
             return $this->redirectToroute('retrieveAllEvents');
         }
-        return $this->render('AppBundle:Events:add_event.html.twig', array('form' => $form->createView())
+        return $this->render('AppBundle:Event:add_event.html.twig', array('form' => $form->createView())
             // ...
         );
 
@@ -49,7 +49,7 @@ class EventsController extends Controller
      */
     public function deleteEventAction()
     {
-        return $this->render('AppBundle:Events:delete_event.html.twig', array(
+        return $this->render('AppBundle:Event:delete_event.html.twig', array(
             // ...
         ));
     }
@@ -59,7 +59,7 @@ class EventsController extends Controller
      */
     public function findEventAction()
     {
-        return $this->render('AppBundle:Events:find_event.html.twig', array(
+        return $this->render('AppBundle:Event:find_event.html.twig', array(
             // ...
         ));
     }
@@ -69,7 +69,10 @@ class EventsController extends Controller
      */
     public function retrieveAllEventsAction()
     {
-        return $this->render('AppBundle:Events:retrieve_all_events.html.twig', array(
+        $event = $this->getDoctrine()
+            ->getRepository('AppBundle:Event')
+            ->findAll();
+        return $this->render('AppBundle:Event:retrieve_all_events.html.twig', array('event'=>$event
             // ...
         ));
     }

@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\UserType;
-use AppBundle\Entity\users;
+use AppBundle\Entity\User;
 //use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 //use Symfony\Component\Form\Extension\HttpFoundation\Request;
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function addUserAction(Request $request)
     {
-        $user = new users;
+        $user = new User;
         $form = $this->createForm(UserType::class, $user);
          /* ->add('username', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
           ->add('profile_picture', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
@@ -73,7 +73,10 @@ class UserController extends Controller
      */
     public function retrieveAllUsersAction()
     {
-        return $this->render('AppBundle:User:retrieve_all_users.html.twig', array(
+        $user = $this->getDoctrine()
+            ->getRepository('AppBundle:User')
+            ->findAll();
+        return $this->render('AppBundle:User:retrieve_all_users.html.twig', array('user'=>$user
             // ...
         ));
     }
