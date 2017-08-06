@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Image:retrieveAllImages{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the display : retrieveAllImages page</h1>
+    {% for i in image %}
+        <div class="jumbotron">
+            <p>{{i.alt}}</p>
+            <p>{{i.url}}</p>
+            <a href="/supprimer_user/{{i.id}}" class="btn btn-danger pull-right">Supprimer</a></td>
+        </div>
+    {% endfor%}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Image:addImage{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Image:addImage page</h1>
+    h2 class="pageheader">Ajout d'image</h2>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{ form_row(form.alt) }}
+    {{ form_row(form.url) }}
+
+    <button type="submit">Add Image !</button>
+    {{form_end(form)}}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Event:addEvent{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Event:addEvent page</h1>
+    h2 class="pageheader">Ajout d'événement</h2>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.debut) }}
+    {{ form_row(form.fin) }}
+
+    <button type="submit">Add Event !</button>
+    {{form_end(form)}}
+{% endblock %}

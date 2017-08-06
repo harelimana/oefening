@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:User:retrieveAllEvents{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the User:retrieveAllEvents page</h1>
+    {% for e in event %}
+        <div class="jumbotron">
+            <p>{{e.nom}}</p>
+            <p>{{e.description}}</p>
+            <p>{{e.debut}}</p>
+            <p>{{e.fin}}</p>
+            <a href="/supprimer_event/{{e.id}}" class="btn btn-danger pull-right">Supprimer</a></td>
+            <p>Evénements liés:</p>
+            {% for events in e.event %}
+                <ul>
+                    <li>{{ events.nom }}</li>
+                </ul>
+            {% endfor %}
+
+        </div>
+    {% endfor%}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:User:retrieveAllUser{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the display : retrieveAllUser page</h1>
+    {% for u in user %}
+        <div class="jumbotron">
+            <p>{{u.username}}</p>
+            <p>{{u.profilePicture}}</p>
+            <a href="/supprimer_user/{{u.id}}" class="btn btn-danger pull-right">Supprimer</a></td>
+            <p>Evénements liés:</p>
+            {% for events in u.event %}
+                <ul>
+                    <li>{{ events.nom }}</li>
+                </ul>
+            {% endfor %}
+
+        </div>
+    {% endfor%}
+{% endblock %}

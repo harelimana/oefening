@@ -4,15 +4,20 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Form\ImageType;
+use AppBundle\Entity\Image;
+use AppBundle\Repository\ImageRepository;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class ImageController extends Controller
 {
     /**
      * @Route("/addImage")
      */
-    public function addImageAction()
+    public function addImageAction(Request $request)
     {
-        $image = new images;
+        $image = new Image;
         $form = $this->createForm(ImageType::class, $image);
         /* ->add('username', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
          ->add('profile_picture', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
@@ -57,11 +62,14 @@ class ImageController extends Controller
     }
 
     /**
-     * @Route("/retrieveAllImages")
+     * @Route("/retrieveAllImages",name="retrieveAllImages")
      */
     public function retrieveAllImagesAction()
     {
-        return $this->render('AppBundle:Image:retrieve_all_images.html.twig', array(
+        $images = $this->getDoctrine()
+            ->getRepository('AppBundle:Image')
+            ->findAll();
+        return $this->render('AppBundle:Image:retrieve_all_images.html.twig', array('image'=>$images
             // ...
         ));
     }
