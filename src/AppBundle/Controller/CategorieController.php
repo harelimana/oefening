@@ -26,11 +26,11 @@ class CategorieController extends Controller
     public function addCategorieAction(Request $request)
     {
         $categorie = new Categorie;
-        $form = $this->createForm(CategorieType::class, $categorie);
-          /*  ->add('nom', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+        $form = $this->createForm(CategorieType::class, $categorie)
+            ->add('nom', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
             ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
             ->add('Sauver', SubmitType::class, array('attr' => array('label' => 'Create Todo','class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
-            ->getForm(); */
+            ->getForm();
 
         $form->handleRequest($request);
 
@@ -74,7 +74,10 @@ class CategorieController extends Controller
      */
     public function findCategorieAction()
     {
-        return $this->render('AppBundle:Categorie:find_categorie.html.twig', array(
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository('AppBundle:Categorie')->find($id);
+        
+        return $this->render('AppBundle:Categorie:find_categorie.html.twig', array('form'=>createView($categorie)
             // ...
         ));
     }

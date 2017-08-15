@@ -55,12 +55,13 @@ class EventsController extends Controller
     }
 
     /**
-     * @Route("/findEvent")
+     * @Route("/findEvent/{id}")
      */
-    public function findEventAction()
+    public function findEventAction($id)
     {
-        return $this->render('AppBundle:Event:find_event.html.twig', array(
-            // ...
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('AppBundle:Event')->find($id);
+        return $this->render('AppBundle:Event:find_event.html.twig', array('form'=> $form->createView($event)            // ...
         ));
     }
 
@@ -72,9 +73,9 @@ class EventsController extends Controller
         $event = $this->getDoctrine()
             ->getRepository('AppBundle:Event')
             ->findAll();
-        return $this->render('AppBundle:Event:retrieve_all_events.html.twig', array('event'=>$event
+        return $this->render('AppBundle:Event:retrieve_all_events.html.twig', array('event'=>$event)
             // ...
-        ));
+        );
     }
 
 }

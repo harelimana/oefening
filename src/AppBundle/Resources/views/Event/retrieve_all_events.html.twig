@@ -1,9 +1,9 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:User:retrieveAllEvents{% endblock %}
+{% block title %}AppBundle:Event:retrieveAllEvents{% endblock %}
 
 {% block body %}
-    <h1>Welcome to the User:retrieveAllEvents page</h1>
+    <h1>Welcome to the Event:retrieveAllEvents page</h1>
     {% for e in event %}
         <div class="jumbotron">
             <p>{{e.nom}}</p>
